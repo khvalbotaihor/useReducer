@@ -18,7 +18,7 @@ export type TasksStateType = {
 }
 
 
-function App() {
+function AppWithReducers() {
     let todolistId1 = v1();
     let todolistId2 = v1();
 
@@ -174,8 +174,9 @@ function App() {
                     }
                 </Grid>
             </Container>
+
         </div>
     );
 }
 
-export default App;
+export default AppWithReducers;
