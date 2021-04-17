@@ -9,6 +9,21 @@ import {
 import {v1} from 'uuid';
 import {FilterValuesType, TodolistType} from '../App';
 
+let todolistId1;
+let todolistId2;
+let startState: Array<TodolistType>;
+
+beforeEach(() => {
+    todolistId1 = v1();
+    todolistId2 = v1();
+
+    startState = [
+        {id: todolistId1, title: "What to learn", filter: "all"},
+        {id: todolistId2, title: "What to buy", filter: "all"}
+    ]
+})
+
+
 test('correct todolist should be removed', () => {
     let todolistId1 = v1();
     let todolistId2 = v1();
