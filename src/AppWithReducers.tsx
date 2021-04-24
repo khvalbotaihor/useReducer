@@ -6,7 +6,7 @@ import {AddItemForm} from './AddItemForm';
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Menu} from '@material-ui/icons';
 import {todolistsReducer} from "./state/todolists-reducer";
-import {tasksReducer} from "./state/tasks-reducer";
+import {removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 
 export type FilterValuesType = "all" | "active" | "completed";
 export type TodolistType = {
@@ -23,12 +23,12 @@ function AppWithReducers() {
     let todolistId1 = v1();
     let todolistId2 = v1();
 
-    let [todolists, dispatchToTodolist] = useReducer(todolistsReducer, [
+    let [todolists, dispatchToTodolistReducer] = useReducer(todolistsReducer, [
         {id: todolistId1, title: "What to learn", filter: "all"},
         {id: todolistId2, title: "What to buy", filter: "all"}
     ])
 
-    let [tasks, dispatchToTasks] = useReducer(tasksReducer, {
+    let [tasks, dispatchToTasksReducer] = useReducer(tasksReducer, {
         [todolistId1]: [
             {id: v1(), title: "HTML&CSS", isDone: true},
             {id: v1(), title: "JS", isDone: true}
@@ -41,12 +41,8 @@ function AppWithReducers() {
 
 
     function removeTask(id: string, todolistId: string) {
-        //достанем нужный массив по todolistId:
-        let todolistTasks = tasks[todolistId];
-        // перезапишем в этом объекте массив для нужного тудулиста отфилтрованным массивом:
-        tasks[todolistId] = todolistTasks.filter(t => t.id != id);
-        // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
-        setTasks({...tasks});
+        const action = removeTaskAC(id, todolistId)
+        dispatchToTasksReducer(action)
     }
 
     function addTask(title: string, todolistId: string) {
