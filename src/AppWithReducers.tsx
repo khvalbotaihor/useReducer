@@ -5,7 +5,7 @@ import {v1} from 'uuid';
 import {AddItemForm} from './AddItemForm';
 import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Menu} from '@material-ui/icons';
-import {changeTodolistFilterAC, todolistsReducer} from "./state/todolists-reducer";
+import {changeTodolistFilterAC, removeTodolistAC, todolistsReducer} from "./state/todolists-reducer";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "./state/tasks-reducer";
 
 export type FilterValuesType = "all" | "active" | "completed";
@@ -61,12 +61,7 @@ function AppWithReducers() {
     }
 
     function removeTodolist(id: string) {
-        // засунем в стейт список тудулистов, id которых не равны тому, который нужно выкинуть
-        setTodolists(todolists.filter(tl => tl.id != id));
-        // удалим таски для этого тудулиста из второго стейта, где мы храним отдельно таски
-        delete tasks[id]; // удаляем св-во из объекта... значением которого являлся массив тасок
-        // засетаем в стейт копию объекта, чтобы React отреагировал перерисовкой
-        setTasks({...tasks});
+        dispatchToTodolistReducer(removeTodolistAC(id))
     }
 
     function changeTodolistTitle(id: string, title: string) {
