@@ -63,7 +63,7 @@ function AppWithRedux() {
     }
 
     function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
-        dispatchToTasksReducer(changeTaskTitleAC(id, newTitle, todolistId))
+        dispatch(changeTaskTitleAC(id, newTitle, todolistId))
     }
 
     function changeFilter(value: FilterValuesType, todolistId: string) {
