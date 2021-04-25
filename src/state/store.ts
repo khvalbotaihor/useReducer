@@ -12,6 +12,7 @@ type AppRootState = {
     todolists: Array<TodolistType>
     tasks : TasksStateType
 }
+type AppRootStateType = ReturnType<typeof rootReducer>
 
 export const store = createStore(rootReducer);
 // @ts-ignore
