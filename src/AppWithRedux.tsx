@@ -38,7 +38,7 @@ function AppWithRedux() {
         {id: todolistId2, title: "What to buy", filter: "all"}
     ])
 
-    let [tasks, dispatchToTasksReducer] = useReducer(tasksReducer, {
+    let [tasks] = useReducer(tasksReducer, {
         [todolistId1]: [
             {id: v1(), title: "HTML&CSS", isDone: true},
             {id: v1(), title: "JS", isDone: true}
