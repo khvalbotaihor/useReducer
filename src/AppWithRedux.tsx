@@ -77,7 +77,7 @@ function AppWithRedux() {
     }
 
     function changeTodolistTitle(id: string, title: string) {
-        dispatchToTodolistReducer(changeTodolistTitleAC(id, title))
+        dispatch(changeTodolistTitleAC(id, title))
     }
 
     function addTodolist(title: string) {
