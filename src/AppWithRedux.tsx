@@ -51,7 +51,7 @@ function AppWithRedux() {
 
 
     function removeTask(id: string, todolistId: string) {
-        dispatchToTasksReducer(removeTaskAC(id, todolistId))
+        dispatch(removeTaskAC(id, todolistId))
     }
 
     function addTask(title: string, todolistId: string) {
