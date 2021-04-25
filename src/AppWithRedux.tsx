@@ -59,7 +59,7 @@ function AppWithRedux() {
     }
 
     function changeStatus(id: string, isDone: boolean, todolistId: string) {
-        dispatchToTasksReducer(changeTaskStatusAC(id, isDone, todolistId))
+        dispatch(changeTaskStatusAC(id, isDone, todolistId))
     }
 
     function changeTaskTitle(id: string, newTitle: string, todolistId: string) {
